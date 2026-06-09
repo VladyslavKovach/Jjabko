@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Створити заявку</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+body{
+    background:#050505;
+    color:white;
+    font-family:Inter, sans-serif;
+}
+
+.order-page{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+}
+
+.form-box{
+    width:100%;
+    max-width:500px;
+
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.1);
+
+    backdrop-filter:blur(20px);
+    border-radius:25px;
+
+    padding:30px;
+
+    box-shadow:0 0 50px rgba(0,255,255,0.08);
+}
+
+h1{
+    text-align:center;
+    margin-bottom:20px;
+    font-size:32px;
+}
+
+input, select, textarea{
+    width:100%;
+    margin-bottom:12px;
+
+    padding:12px;
+    border-radius:12px;
+
+    border:1px solid rgba(255,255,255,0.1);
+    background:#111;
+    color:white;
+    outline:none;
+}
+
+textarea{
+    min-height:120px;
+    resize:none;
+}
+
+button{
+    width:100%;
+    padding:14px;
+
+    border:none;
+    border-radius:12px;
+
+    background:linear-gradient(135deg,#00ffe1,#0066ff);
+    color:white;
+
+    font-weight:700;
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.03);
+}
+
+.back{
+    display:block;
+    text-align:center;
+    margin-top:15px;
+    color:#aaa;
+    text-decoration:none;
+}
+.back:hover{
+    color:white;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="order-page">
+
+    <div class="form-box">
+
+        <h1>📩 Створити заявку</h1>
+
+        <form id="orderForm">
+
+            <input type="text" name="name" placeholder="Ваше ім’я" required>
+
+            <input type="tel" name="phone" placeholder="Номер телефону" required>
+
+            <select name="device" required>
+                <option value="">📱 Модель iPhone</option>
+                <option>iPhone 11</option>
+                <option>iPhone 12</option>
+                <option>iPhone 13</option>
+                <option>iPhone 14</option>
+                <option>iPhone 15</option>
+                <option>iPhone 16</option>
+                <option>iPhone 17</option>
+            </select>
+
+            <textarea name="problem" placeholder="Опишіть проблему" required></textarea>
+
+            <button type="submit">🚀 Відправити заявку</button>
+
+        </form>
+
+        <a href="index.html" class="back">⬅ Назад на головну</a>
+
+    </div>
+
+</div>
+
+<script>
+const form = document.getElementById("orderForm");
+
+const TOKEN = "8452405726:AAFysazpH-E5RClGK0CV5ywy20b5PFCEotw";
+const CHAT_ID = "803414805";
+
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const data = new FormData(form);
+
+    const text =
+`📩 НОВА ЗАЯВКА
+👤 Ім'я: ${data.get("name")}
+📞 Телефон: ${data.get("phone")}
+📱 Модель: ${data.get("device")}
+⚠️ Проблема: ${data.get("problem")}`;
+
+    try {
+        const res = await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                chat_id: CHAT_ID,
+                text: text
+            })
+        });
+
+        if (!res.ok) throw new Error("Telegram error");
+
+        alert("Заявку відправлено 🚀");
+        form.reset();
+
+    } catch (err) {
+        console.log(err);
+        alert("Помилка відправки ❌");
+    }
+});
+</script>
+
+</body>
+</html>
