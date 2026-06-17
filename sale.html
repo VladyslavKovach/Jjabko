@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Акції | Ябко</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="icon" type="image/png" href="images/apple-logo.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<section class="sale-page">
+
+<div class="container">
+
+<div class="sale-top">
+
+<a href="index.html" class="back-btn">
+← Назад
+</a>
+
+<div class="logo sale-logo">
+<img src="images/apple-logo.png">
+<span class="logo-text">Ябко</span>
+</div>
+
+</div>
+
+<div class="sale-hero">
+
+<h1>
+🔥 Гарячі акції сервісу
+</h1>
+
+<p>
+Встигни скористатись спеціальними пропозиціями
+та заощадити на ремонті свого iPhone.
+</p>
+
+</div>
+
+<div class="sale-grid">
+
+<div class="sale-card hot">
+<span class="badge">ТОП</span>
+
+<h2>-10%</h2>
+
+<h3>На перший ремонт</h3>
+
+<p>
+Знижка для нових клієнтів на будь-яку послугу.
+</p>
+</div>
+<div class="countdown-box">
+
+    <h2>⏳ До кінця акції залишилось</h2>
+    
+    <div class="countdown">
+    
+    <div class="time-card">
+    <span id="hours">23</span>
+    <p>Годин</p>
+    </div>
+    
+    <div class="time-card">
+    <span id="minutes">59</span>
+    <p>Хвилин</p>
+    </div>
+    
+    <div class="time-card">
+    <span id="seconds">59</span>
+    <p>Секунд</p>
+    </div>
+    
+    </div>
+    
+    </div>
+    
+    
+    <div class="stats-grid">
+    
+    <div class="stat-card">
+    <h2 id="repairs">0</h2>
+    <p>Успішних ремонтів</p>
+    </div>
+    
+    <div class="stat-card">
+    <h2 id="clients">0</h2>
+    <p>Задоволених клієнтів</p>
+    </div>
+    
+    <div class="stat-card">
+    <h2 id="rating">0</h2>
+    <p>Рейтинг сервісу</p>
+    </div>
+    
+    </div>
+    
+    <div class="wheel-section">
+    
+    <h2>🎰 Колесо подарунків</h2>
+    
+    <p class="wheel-subtitle">
+    Натисни кнопку та отримай персональний бонус
+    </p>
+    
+    <div class="wheel-container">
+    
+    <div id="wheel" class="wheel">
+    
+    <div class="wheel-center">
+    🎁
+    </div>
+    
+    </div>
+    
+    </div>
+    
+    <button class="spin-btn" onclick="spinWheel()">
+    Крутити колесо
+    </button>
+    
+    <div id="prize" class="prize-result"></div>
+    
+    </div>
+
+    
+    <div class="mega-sale">
+    
+    <div class="mega-sale-content">
+    
+    <h2>🔥 СУПЕРАКЦІЯ</h2>
+    
+    <h3>-15%</h3>
+    
+    <p>
+    На заміну дисплея до кінця місяця
+    </p>
+    
+    <a href="order.html" class="cta-main">
+    🚀 Отримати знижку
+    <i></i>
+    </a>
+    
+    </div>
+    
+    </div>
+<div class="sale-card">
+<h2>🎁</h2>
+
+<h3>Безкоштовна діагностика</h3>
+
+<p>
+Навіть якщо відмовитесь від ремонту.
+</p>
+</div>
+
+<div class="sale-card">
+<h2>🛡️</h2>
+
+<h3>До 12 місяців гарантії</h3>
+
+<p>
+На виконані роботи та комплектуючі.
+</p>
+</div>
+
+<div class="sale-card">
+<h2>⚡</h2>
+
+<h3>Ремонт від 30 хвилин</h3>
+
+<p>
+Популярні ремонти виконуємо одразу.
+</p>
+</div>
+
+</div>
+
+<div class="super-banner">
+
+<h2>🔥 Тільки цього місяця</h2>
+
+<p>
+При заміні дисплея — захисне скло в подарунок.
+</p>
+
+<a href="order.html" class="cta-main">
+🚀 Отримати знижку
+<i></i>
+</a>
+
+</div>
+
+</div>
+
+</section>
+<script>
+
+    animateNumber("repairs",5000);
+    animateNumber("clients",3200);
+    animateNumber("rating",49);
+    
+    function animateNumber(id,target){
+    
+    let element=document.getElementById(id);
+    let count=0;
+    
+    let interval=setInterval(()=>{
+    
+    count++;
+    
+    element.innerHTML=count;
+    
+    if(count>=target){
+    clearInterval(interval);
+    
+    if(id==="rating"){
+    element.innerHTML="4.9★";
+    }
+    }
+    
+    },10);
+    
+    }
+    
+    function spinWheel(){
+    
+    const wheel=document.getElementById("wheel");
+    
+    const prize=document.getElementById("prize");
+    
+    const gifts=[
+    "🎁 Знижка 5%",
+    "🎁 Знижка 10%",
+    "🎁 Захисне скло",
+    "🎁 Безкоштовна діагностика",
+    "🎁 Знижка 15%"
+    ];
+    
+    let deg=3600+Math.random()*720;
+    
+    wheel.style.transform=`rotate(${deg}deg)`;
+    
+    let reward=gifts[Math.floor(Math.random()*gifts.length)];
+    
+    setTimeout(()=>{
+    prize.innerHTML=reward;
+    },4000);
+    
+    }
+    
+    </script>
+</body>
+</html>
